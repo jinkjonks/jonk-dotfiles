@@ -1,0 +1,60 @@
+config:
+  backup: true
+  banner: true
+  create: true
+  dotpath: dotfiles
+  keepdot: false
+  link_dotfile_default: nolink
+  link_on_import: nolink
+  longkey: false
+dotfiles:
+  f_starship.toml:
+    src: config/starship.toml
+    dst: ~/.config/starship.toml
+  d_lazygit:
+    src: config/lazygit
+    dst: ~/.config/lazygit
+  f_zshrc:
+    src: zshrc
+    dst: ~/.zshrc
+  d_macchina:
+    src: config/macchina
+    dst: ~/.config/macchina
+  d_nvim:
+    src: config/nvim
+    dst: ~/.config/nvim
+  f_wezterm.lua:
+    src: wezterm.lua
+    dst: ~/.wezterm.lua
+  d_zsh:
+    src: zsh
+    dst: ~/.zsh
+  d_pypoetry:
+    src: config/pypoetry
+    dst: ~/.config/pypoetry
+profiles:
+  common:
+    dotfiles:
+      - f_starship.toml
+      - f_zshrc
+      - d_macchina
+      - d_nvim
+      - d_zsh
+      - d_pypoetry
+      - f_wezterm.lua
+  Jennys-MacBook-Pro.local:
+    include:
+      - common
+  jonks-pi:
+    variables:
+      distro: debian
+    include:
+      - common
+  jingjing-gaming:
+    variables:
+      distro: arch
+    include:
+      - common
+  M1224:
+    include:
+      - common

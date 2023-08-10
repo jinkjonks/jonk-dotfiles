@@ -1,0 +1,4 @@
+[virtualenvs]
+
+[virtualenvs.options]
+always-copy = true

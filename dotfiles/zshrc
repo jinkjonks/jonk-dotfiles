@@ -1,0 +1,27 @@
+eval "$(starship init zsh)"
+
+eval "$(fnm env --use-on-cd)"
+source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+{%@@ if profile == 'M1224' @@%}
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{%@@ elif distro == 'macos' @@%}
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
+{%@@ elif distro == "linux" @@%}
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{%@@ endif @@%}
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+export POETRY_CONFIG_DIR="$HOME/.config/poetry"
+
+# work shortcuts
+{%@@ if profile == 'M1224' @@%}
+function awsauth { $HOME/aws-auth-bash/auth.sh "$@"; [[ -r "$HOME/.aws/sessiontoken" ]] && . "$HOME/.aws/sessiontoken"; }
+alias ass='awsauth --role ADFS-AIPS-Candidate-Quality-Staging-Admin && awsauth --profile dp --role ADFS-DataPlatform-Prod-AIPS-CQ-ProfilePII'
+alias pyass='awsauth --role ADFS-AIPS-Candidate-Quality-Staging-Admin && aws codeartifact login --tool pip --repository aips-python --domain aips-python --domain-owner 971356129762 && aws s3 cp s3://aips-builds/authenticate.sh - | bash -s python --poetry'
+{%@@ endif @@%}
+
+eval "$(zoxide init zsh)"
+macchina
