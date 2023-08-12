@@ -14,9 +14,6 @@ return {
     },
   },
   {
-    "pocco81/auto-save.nvim",
-  },
-  {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     event = "LspAttach",
     keys = {
