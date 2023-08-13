@@ -8,7 +8,7 @@ local config = {}
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
-config.font = wezterm.font("mononoki-nf")
+config.font = wezterm.font'Mononoki Nerd Font'
 config.color_scheme = "rose-pine"
 config.font_size = 14
 
@@ -30,6 +30,8 @@ config.wsl_domains = {
 }
 if not os.getenv("DISPLAY") then
 	config.default_domain = "WSL:Arch"
+	config.default_prog = { "fish" }
+	config.default_cwd =  "~" 
 
 	config.window_background_opacity = 0.95
 else

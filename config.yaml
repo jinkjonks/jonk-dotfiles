@@ -25,8 +25,8 @@ dotfiles:
     dst: ~/.config/nvim
   f_wezterm.lua:
     src: wezterm.lua
-    dst: '{{@@ home_dir @@}}/.wezterm.lua'
-    chmod: '777'
+    dst: "{{@@ home_dir @@}}/.wezterm.lua"
+    chmod: "777"
   d_zsh:
     src: zsh
     dst: ~/.zsh
@@ -34,35 +34,45 @@ dotfiles:
   d_pypoetry:
     src: config/pypoetry
     dst: ~/.config/pypoetry
+  d_nushell:
+    src: config/nushell
+    dst: ~/.config/nushell
+  d_fish:
+    src: config/fish
+    dst: ~/.config/fish
+    chmod: "700"
 profiles:
   common:
     dotfiles:
-    - f_starship.toml
-    - f_zshrc
-    - d_macchina
-    - d_nvim
-    - d_zsh
-    - d_pypoetry
-    - f_wezterm.lua
+      - f_starship.toml
+      - f_zshrc
+      - d_macchina
+      - d_nvim
+      - d_zsh
+      - d_pypoetry
+      - f_wezterm.lua
+      - d_nushell
+      - d_fish
   Jennys-MacBook-Pro.local:
     include:
-    - common
+      - common
     variables:
-      home_dir: '~'
+      home_dir: "~"
   jonks-pi:
     variables:
       distro: debian
-      home_dir: '~'
+      home_dir: "~"
     include:
-    - common
+      - common
   jingjing-gaming:
     variables:
       distro: wslarch
       home_dir: /mnt/c/Users/jingj
     include:
-    - common
+      - common
+    dotfiles:
   M1224:
     include:
-    - common
+      - common
     variables:
-      home_dir: '~'
+      home_dir: "~"
