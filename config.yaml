@@ -25,36 +25,44 @@ dotfiles:
     dst: ~/.config/nvim
   f_wezterm.lua:
     src: wezterm.lua
-    dst: ~/.wezterm.lua
+    dst: '{{@@ home_dir @@}}/.wezterm.lua'
+    chmod: '777'
   d_zsh:
     src: zsh
     dst: ~/.zsh
+    template: true
   d_pypoetry:
     src: config/pypoetry
     dst: ~/.config/pypoetry
 profiles:
   common:
     dotfiles:
-      - f_starship.toml
-      - f_zshrc
-      - d_macchina
-      - d_nvim
-      - d_zsh
-      - d_pypoetry
-      - f_wezterm.lua
+    - f_starship.toml
+    - f_zshrc
+    - d_macchina
+    - d_nvim
+    - d_zsh
+    - d_pypoetry
+    - f_wezterm.lua
   Jennys-MacBook-Pro.local:
     include:
-      - common
+    - common
+    variables:
+      home_dir: '~'
   jonks-pi:
     variables:
       distro: debian
+      home_dir: '~'
     include:
-      - common
+    - common
   jingjing-gaming:
     variables:
-      distro: arch
+      distro: wslarch
+      home_dir: /mnt/c/Users/jingj
     include:
-      - common
+    - common
   M1224:
     include:
-      - common
+    - common
+    variables:
+      home_dir: '~'

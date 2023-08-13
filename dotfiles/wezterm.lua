@@ -5,22 +5,15 @@ local wezterm = require("wezterm")
 -- This table will hold the configuration.
 local config = {}
 
--- In newer versions of wezterm, use the config_builder which will
--- help provide clearer error messages
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
-
--- This is where you actually apply your config choices
-
--- For example, changing the color scheme:
+config.font = wezterm.font("mononoki-nf")
 config.color_scheme = "rose-pine"
-config.font = wezterm.font("Mononoki Nerd Font", { weight = "Bold" })
-config.font_size = 20
+config.font_size = 14
 
 config.hide_tab_bar_if_only_one_tab = true
 config.macos_window_background_blur = 20
-config.window_background_opacity = 0.9
 config.use_resize_increments = true
 
 config.ssh_domains = {
@@ -31,4 +24,16 @@ config.ssh_domains = {
 		ssh_option = { identityfile = "~/.ssh/id_rsa.pub" },
 	},
 }
+
+config.wsl_domains = {
+	{ name = "WSL:Arch", distribution = "Arch", default_prog = { "fish" }, default_cwd = "~", username = "jonkjonks" },
+}
+if not os.getenv("DISPLAY") then
+	config.default_domain = "WSL:Arch"
+
+	config.window_background_opacity = 0.95
+else
+	config.window_background_opacity = 0.9
+end
+
 return config
