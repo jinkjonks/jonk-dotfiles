@@ -36,7 +36,7 @@ dotfiles:
     dst: ~/.config/pypoetry
   d_nushell:
     src: config/nushell
-    dst: ~/.config/nushell
+    dst: "{{@@ nu_dir @@}}"
   d_fish:
     src: config/fish
     dst: ~/.config/fish
@@ -56,7 +56,10 @@ profiles:
   Jennys-MacBook-Pro.local:
     include:
       - common
+    dynvariables:
+      nu_dir: nu -c '$nu.default-config-dir'
     variables:
+      distro: macos
       home_dir: "~"
   jonks-pi:
     variables:
@@ -68,11 +71,15 @@ profiles:
     variables:
       distro: wslarch
       home_dir: /mnt/c/Users/jingj
+    dynvariables:
+      nu_dir: nu -c '$nu.default-config-dir'
     include:
       - common
-    dotfiles:
   M1224:
     include:
       - common
     variables:
+      distro: macos
       home_dir: "~"
+    dynvariables:
+      nu_dir: nu -c '$nu.default-config-dir'
