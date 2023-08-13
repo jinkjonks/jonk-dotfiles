@@ -8,12 +8,10 @@ local config = {}
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
-config.font = wezterm.font'Mononoki Nerd Font'
+config.font = wezterm.font("Mononoki Nerd Font")
 config.color_scheme = "rose-pine"
 config.font_size = 14
 
-config.hide_tab_bar_if_only_one_tab = true
-config.macos_window_background_blur = 20
 config.use_resize_increments = true
 
 config.ssh_domains = {
@@ -25,17 +23,16 @@ config.ssh_domains = {
 	},
 }
 
-config.wsl_domains = {
-	{ name = "WSL:Arch", distribution = "Arch", default_prog = { "fish" }, default_cwd = "~", username = "jonkjonks" },
-}
 if not os.getenv("DISPLAY") then
 	config.default_domain = "WSL:Arch"
-	config.default_prog = { "fish" }
-	config.default_cwd =  "~" 
+	config.default_prog = { "nu" }
+	config.default_cwd = "~"
 
 	config.window_background_opacity = 0.95
 else
 	config.window_background_opacity = 0.9
+	config.hide_tab_bar_if_only_one_tab = true
+	config.macos_window_background_blur = 20
 end
 
 return config
