@@ -63,5 +63,14 @@ if vim.fn.has("macunix") and vim.fn.system("uname -m") == "arm64" then
     },
   }
 else
-  return {}
+  return {
+    "jcdickinson/codeium.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup({})
+    end,
+  }
 end
