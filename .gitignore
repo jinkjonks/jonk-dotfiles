@@ -3,3 +3,4 @@ dotfiles/config/lvim/lazy-lock.json
 dotfiles/config/lazygit/state.yml
 dotfiles/config/spicetify/Backup
 dotfiles/config/spicetify/Extracted
+dotfiles/config/nvim/lazy-lock.json
