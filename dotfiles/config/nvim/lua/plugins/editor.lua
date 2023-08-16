@@ -31,7 +31,7 @@ return {
     config = function(_, opts)
       vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
       vim.diagnostic.config({ virtual_lines = { highlight_whole_line = false } })
-      require("lsp_lines").setup(opts)
+      require("lsp_lines").setup(unpack(opts))
     end,
   },
 }
