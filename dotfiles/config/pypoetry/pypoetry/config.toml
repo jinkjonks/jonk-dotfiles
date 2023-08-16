@@ -1,0 +1,7 @@
+[virtualenvs]
+create = true
+in-project = true
+prefer-active-python = true
+
+[repositories.aws]
+url = "https://aips-python-971356129762.d.codeartifact.ap-southeast-2.amazonaws.com/pypi/aips-python/simple/"
