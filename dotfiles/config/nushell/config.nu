@@ -178,7 +178,7 @@ let light_theme = {
 # let carapace_completer = {|spans|
 #     carapace $spans.0 nushell $spans | from json
 # }
-
+source ~/.zoxide.nu
 let zoxide_completer = {|spans|
     $spans | skip 1 | zoxide query -l $in | lines | where {|x| $x != $env.PWD}
 }
@@ -302,15 +302,19 @@ $env.config = {
     buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
     use_ansi_coloring: true
     bracketed_paste: true # enable bracketed paste, currently useless on windows
-    edit_mode: emacs # emacs, vi
-    shell_integration: false # enables terminal shell integration. Off by default, as some terminals have issues with this.
+    edit_mode: vi # emacs, vi
+    shell_integration: true # enables terminal shell integration. Off by default, as some terminals have issues with this.
     render_right_prompt_on_last_line: false # true or false to enable or disable right prompt to be rendered on last line of the prompt.
 
     hooks: {
         pre_prompt: [{ null }] # run before the prompt is shown
         pre_execution: [{ null }] # run before the repl input is run
         env_change: {
-            PWD: [{|before, after| null }] # run if the PWD environment is different since the last repl input
+      PWD: [{ |before, after|
+        if ('FNM_DIR' in $env) and ([.nvmrc .node-version] | path exists | any { |it| $it }) {
+          fnm use
+        }
+      }]
         }
         display_output: { table } # run before the output of a command is drawn, example: `{ if (term size).columns >= 100 { table -e } else { table } }`
         command_not_found: { null } # return an error message when a command is not found
@@ -827,3 +831,5 @@ $env.config = {
         }
     ]
 }
+
+

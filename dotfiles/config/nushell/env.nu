@@ -63,6 +63,23 @@ $env.NU_PLUGIN_DIRS = [
 ]
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
-
+$env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin')
 $env.PATH = ($env.PATH | split row (char esep) | append '.cargo/bin')
-$env.PATH = ($env.PATH | split row (char esep) | append 'balena')
+$env.PATH = ($env.PATH | split row (char esep) | append '.local/bin')
+
+# env.nu
+if not (which fnm | is-empty) {
+  ^fnm env --json | from json | load-env
+  # Checking `Path` for Windows
+  let path = if 'Path' in $env { $env.Path } else { $env.PATH }
+  let node_path = if (sys).host.name == 'Windows' {
+    $"($env.FNM_MULTISHELL_PATH)"
+  } else {
+    $"($env.FNM_MULTISHELL_PATH)/bin"
+  }
+  $env.PATH = ($path | prepend [ $node_path ])
+}
+
+# config.nu
+
+zoxide init nushell | save -f ~/.zoxide.nu
