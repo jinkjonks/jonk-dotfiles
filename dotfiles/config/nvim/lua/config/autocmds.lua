@@ -5,15 +5,8 @@
 --
 ---- Disable autoformat for lua files
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "py", "js", "json" },
-  callback = function()
-    vim.b.autoformat = false
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-  desc = "Auto select virtualenv Nvim open",
-  pattern = "py, pyproject.toml, poetry.lock",
+  desc = "Auto select virtualenv",
+  pattern = { "py, pyproject.toml, poetry.lock" },
   callback = function()
     local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
     if venv ~= "" then

@@ -3,6 +3,14 @@
 # version = 0.83.1
 
 $env.STARSHIP_SHELL = "nu"
+$env.PYENV_ROOT = ~/.pyenv
+$env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin')
+$env.PATH = ($env.PATH | split row (char esep) | prepend '~/.local/bin')
+$env.PATH = ($env.PATH | split row (char esep) | prepend '~/.cargo/bin')
+$env.PATH = ($env.PATH | split row (char esep) | prepend '/usr/local/bin')
+$env.PATH = ($env.PATH | split row (char esep) | prepend '~/.pyenv')
+
+$env.PATH = ($env.PATH | split row (char esep) | prepend '~/.ghcup/bin')
 
 def create_left_prompt [] {
     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
@@ -13,7 +21,7 @@ def create_right_prompt [] {
     let time_segment = ([
         (ansi reset)
         (ansi magenta)
-        (date now | date format '%Y/%m/%d %r')
+        (date now | format date '%Y/%m/%d %r')
     ] | str join | str replace --all "([/:])" $"(ansi green)${1}(ansi magenta)" |
         str replace --all "([AP]M)" $"(ansi magenta_underline)${1}")
 
@@ -54,20 +62,15 @@ $env.ENV_CONVERSIONS = {
 
 # Directories to search for scripts when calling source or use
 $env.NU_LIB_DIRS = [
-    # ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
+    ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
 ]
 
 # Directories to search for plugin binaries when calling register
 $env.NU_PLUGIN_DIRS = [
-    # ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
+    ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
-# To add entries to PATH (on Windows you might use Path), you can use the following pattern:
-$env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin')
-$env.PATH = ($env.PATH | split row (char esep) | append '.cargo/bin')
-$env.PATH = ($env.PATH | split row (char esep) | append '.local/bin')
-
-# env.nu
+# fnm
 if not (which fnm | is-empty) {
   ^fnm env --json | from json | load-env
   # Checking `Path` for Windows
@@ -80,6 +83,11 @@ if not (which fnm | is-empty) {
   $env.PATH = ($path | prepend [ $node_path ])
 }
 
-# config.nu
+if not (which python | is-empty) {
+    let python_path = $"(^pyenv which python)"
+    $env.PATH = ( $env.PATH | prepend [ $python_path ] )
+  }
 
 zoxide init nushell | save -f ~/.zoxide.nu
+
+use ~/.config/nushell/init.nu

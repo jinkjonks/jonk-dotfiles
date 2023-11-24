@@ -1,11 +1,5 @@
-# Nushell Config File
-#
-# version = 0.83.1
 
-# For more information on defining custom themes, see
-# https://www.nushell.sh/book/coloring_and_theming.html
-# And here is the theme collection
-# https://github.com/nushell/nu_scripts/tree/main/themes
+
 let dark_theme = {
     # color for nushell primitives
     separator: white
@@ -90,98 +84,13 @@ let dark_theme = {
     shape_vardecl: purple
 }
 
-let light_theme = {
-    # color for nushell primitives
-    separator: dark_gray
-    leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
-    header: green_bold
-    empty: blue
-    # Closures can be used to choose colors for specific values.
-    # The value (in this case, a bool) is piped into the closure.
-    bool: {|| if $in { 'dark_cyan' } else { 'dark_gray' } }
-    int: dark_gray
-    filesize: {|e|
-        if $e == 0b {
-            'dark_gray'
-        } else if $e < 1mb {
-            'cyan_bold'
-        } else { 'blue_bold' }
-    }
-    duration: dark_gray
-    date: {|| (date now) - $in |
-        if $in < 1hr {
-            'purple'
-        } else if $in < 6hr {
-            'red'
-        } else if $in < 1day {
-            'yellow'
-        } else if $in < 3day {
-            'green'
-        } else if $in < 1wk {
-            'light_green'
-        } else if $in < 6wk {
-            'cyan'
-        } else if $in < 52wk {
-            'blue'
-        } else { 'dark_gray' }
-    }
-    range: dark_gray
-    float: dark_gray
-    string: dark_gray
-    nothing: dark_gray
-    binary: dark_gray
-    cellpath: dark_gray
-    row_index: green_bold
-    record: white
-    list: white
-    block: white
-    hints: dark_gray
-    search_result: {fg: white bg: red}    
-    shape_and: purple_bold
-    shape_binary: purple_bold
-    shape_block: blue_bold
-    shape_bool: light_cyan
-    shape_closure: green_bold
-    shape_custom: green
-    shape_datetime: cyan_bold
-    shape_directory: cyan
-    shape_external: cyan
-    shape_externalarg: green_bold
-    shape_filepath: cyan
-    shape_flag: blue_bold
-    shape_float: purple_bold
-    # shapes are used to change the cli syntax highlighting
-    shape_garbage: { fg: white bg: red attr: b}
-    shape_globpattern: cyan_bold
-    shape_int: purple_bold
-    shape_internalcall: cyan_bold
-    shape_list: cyan_bold
-    shape_literal: blue
-    shape_match_pattern: green
-    shape_matching_brackets: { attr: u }
-    shape_nothing: light_cyan
-    shape_operator: yellow
-    shape_or: purple_bold
-    shape_pipe: purple_bold
-    shape_range: yellow_bold
-    shape_record: cyan_bold
-    shape_redirection: purple_bold
-    shape_signature: green_bold
-    shape_string: green
-    shape_string_interpolation: cyan_bold
-    shape_table: blue_bold
-    shape_variable: purple
-    shape_vardecl: purple
-}
-
-# External completer example
-# let carapace_completer = {|spans|
-#     carapace $spans.0 nushell $spans | from json
-# }
 source ~/.zoxide.nu
 let zoxide_completer = {|spans|
     $spans | skip 1 | zoxide query -l $in | lines | where {|x| $x != $env.PWD}
 }
+
+
+
 
 # Default fish completion since out of box
 let fish_completer = {|spans|
@@ -189,6 +98,8 @@ let fish_completer = {|spans|
     | $"value(char tab)description(char newline)" + $in
     | from tsv --flexible --no-infer
 }
+
+# completion handling
 let multiple_completer = { |spans|
     {
     z: $zoxide_completer
@@ -197,6 +108,28 @@ let multiple_completer = { |spans|
     __zoxide_zi: $zoxide_completer
     } | get -i $spans.0 | default $fish_completer | do $in $spans
 
+}
+
+def source_bash_env [src: string] {
+  if (($src | path expand | path type) == file) {
+    open $src | lines | filter {|x| $x starts-with 'export'} | parse "export {key}={value}" | each { |it| load-env { $it.key : $it.value } }
+  }
+}
+
+def awsauth [--role (-n): string, --reuse (-u)] {
+  if $reuse {
+    bash ~/aws-auth-bash/auth.sh -u
+  } else if $role == "staging" {
+    bash ~/aws-auth-bash/auth.sh -n ADFS-AIPS-Candidate-Quality-Staging-Admin
+  } else if $role == "dp" {
+    bash ~/aws-auth-bash/auth.sh --profile dp -n ADFS-DataPlatform-Prod-AIPS-CQ-ProfilePII
+  } else {
+    bash ~/aws-auth-bash/auth.sh
+  }
+}
+
+def pyass [] {
+  aws s3 cp s3://aips-builds/authenticate.sh - | bash -c $"($in) python"
   }
 
 
@@ -218,9 +151,9 @@ $env.config = {
     }
 
     table: {
-        mode: rounded # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
-        index_mode: always # "always" show indexes, "never" show indexes, "auto" = show indexes when a table has "index" column
-        show_empty: true # show 'empty list' and 'empty record' placeholders for command output
+        mode: rounded
+        index_mode: always
+        show_empty: true 
         trim: {
             methodology: wrapping # wrapping or truncating
             wrapping_try_keep_words: true # A strategy used by the 'wrapping' methodology
@@ -228,9 +161,6 @@ $env.config = {
         }
     }
 
-    # datetime_format determines what a datetime rendered in the shell would look like.
-    # Behavior without this configuration point will be to "humanize" the datetime display,
-    # showing something like "a day ago."
     datetime_format: {
         # normal: '%a, %d %b %Y %H:%M:%S %z'    # shows up in displays of variables or other datetime's outside of tables
         # table: '%m/%d/%y %I:%M:%S%p'          # generally shows up in tabular outputs such as ls. commenting this out will change it to the default human readable datetime format
@@ -302,7 +232,7 @@ $env.config = {
     buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
     use_ansi_coloring: true
     bracketed_paste: true # enable bracketed paste, currently useless on windows
-    edit_mode: vi # emacs, vi
+    edit_mode: emacs # emacs, vi
     shell_integration: true # enables terminal shell integration. Off by default, as some terminals have issues with this.
     render_right_prompt_on_last_line: false # true or false to enable or disable right prompt to be rendered on last line of the prompt.
 
