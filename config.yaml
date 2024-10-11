@@ -31,16 +31,6 @@ dotfiles:
     src: zsh
     dst: ~/.zsh
     template: true
-  d_pypoetry:
-    src: config/pypoetry
-    dst: ~/.config/pypoetry
-  d_nushell:
-    src: config/nushell
-    dst: "{{@@ nu_dir @@}}"
-  d_fish:
-    src: config/fish
-    dst: ~/.config/fish
-    chmod: "700"
 profiles:
   common:
     dotfiles:
@@ -49,23 +39,16 @@ profiles:
       - d_macchina
       - d_nvim
       - d_zsh
-      - d_pypoetry
       - f_wezterm.lua
-      - d_nushell
-      - d_fish
   Jennys-MacBook-Pro.local:
     include:
       - common
-    dynvariables:
-      nu_dir: nu -c '$nu.default-config-dir'
     variables:
       distro: macos
       home_dir: $HOME
   Jennys-Josef-Laptop.local:
     include:
       - common
-    dynvariables:
-      nu_dir: nu -c '$nu.default-config-dir'
     variables:
       distro: macos
       home_dir: $HOME
@@ -79,15 +62,5 @@ profiles:
     variables:
       distro: wslarch
       home_dir: "%HOME%"
-    dynvariables:
-      nu_dir: nu -c '$nu.default-config-dir'
     include:
       - common
-  M1224:
-    include:
-      - common
-    variables:
-      distro: macos
-      home_dir: $HOME
-    dynvariables:
-      nu_dir: nu -c '$nu.default-config-dir'

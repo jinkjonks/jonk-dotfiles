@@ -9,8 +9,8 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 config.font = wezterm.font("Mononoki Nerd Font", { weight = "Bold" })
-config.color_scheme = "rose-pine"
-config.font_size = 14
+config.color_scheme = "Rosé Pine (base16)"
+config.font_size = 20
 
 config.window_background_opacity = 0.95
 
