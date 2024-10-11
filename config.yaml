@@ -25,42 +25,46 @@ dotfiles:
     dst: ~/.config/nvim
   f_wezterm.lua:
     src: wezterm.lua
-    dst: "{{@@ home_dir @@}}/.wezterm.lua"
-    chmod: "777"
-  d_zsh:
-    src: zsh
-    dst: ~/.zsh
-    template: true
+    dst: '{{@@ home_dir @@}}/.wezterm.lua'
+    chmod: '777'
+  f_wezterm.lua_1:
+    src: wezterm.lua
+    dst: ~/.wezterm.lua
+  d_zsh-complete:
+    src: zsh-complete
+    dst: ~/.zsh-complete
 profiles:
   common:
     dotfiles:
-      - f_starship.toml
-      - f_zshrc
-      - d_macchina
-      - d_nvim
-      - d_zsh
-      - f_wezterm.lua
+    - f_starship.toml
+    - f_zshrc
+    - d_macchina
+    - d_nvim
+    - f_wezterm.lua
   Jennys-MacBook-Pro.local:
     include:
-      - common
+    - common
     variables:
       distro: macos
       home_dir: $HOME
   Jennys-Josef-Laptop.local:
     include:
-      - common
+    - common
     variables:
       distro: macos
       home_dir: $HOME
+    dotfiles:
+    - f_wezterm.lua_1
+    - d_zsh-complete
   jonks-pi:
     variables:
       distro: debian
       home_dir: $HOME
     include:
-      - common
+    - common
   jingjing-gaming:
     variables:
       distro: wslarch
-      home_dir: "%HOME%"
+      home_dir: '%HOME%'
     include:
-      - common
+    - common

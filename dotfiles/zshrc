@@ -1,27 +1,33 @@
-eval "$(starship init zsh)"
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
+  autoload -Uz compinit
+  compinit
+fi
+eval "$(rye self completion -s zsh)"
+source <(fzf --zsh)
 eval "$(fnm env --use-on-cd)"
-source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
-{%@@ if profile == 'M1224' @@%}
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+eval "$(starship init zsh)"
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+alias docker-wipe='docker system prune --force && docker system prune -a --force && docker volume prune --force'
+
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-{%@@ elif distro == 'macos' @@%}
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
-{%@@ elif distro == "linux" @@%}
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-{%@@ endif @@%}
-
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-export POETRY_CONFIG_DIR="$HOME/.config/poetry"
-
-# work shortcuts
-{%@@ if profile == 'M1224' @@%}
-function awsauth { $HOME/aws-auth-bash/auth.sh "$@"; [[ -r "$HOME/.aws/sessiontoken" ]] && . "$HOME/.aws/sessiontoken"; }
-alias ass='awsauth --role ADFS-AIPS-Candidate-Quality-Staging-Admin && awsauth --profile dp --role ADFS-DataPlatform-Prod-AIPS-CQ-ProfilePII'
-alias pyass='awsauth --role ADFS-AIPS-Candidate-Quality-Staging-Admin && aws codeartifact login --tool pip --repository aips-python --domain aips-python --domain-owner 971356129762 && aws s3 cp s3://aips-builds/authenticate.sh - | bash -s python --poetry'
-{%@@ endif @@%}
+export GOOGLE_APPLICATION_CREDENTIALS=$HOME/.config/gcloud/application_default_credentials.json
+dir="$HOME/.zsh-complete"
+mkdir -p "$dir"
+rg --generate complete-zsh > "$dir/_rg"
+pulumi gen-completion zsh > "$dir/_pulumi"
 
 eval "$(zoxide init zsh)"
+export PATH="$PATH:/usr/local/go/bin"
+
+source "$HOME/.rye/env"
+
 macchina
+
+eval $(thefuck --alias)
+export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
