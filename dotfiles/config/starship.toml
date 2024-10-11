@@ -1,151 +1,163 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+format = """
+$username \
+$directory \
+$git_branch \
+$git_status \
+$fill \
+$c \
+$elixir \
+$elm \
+$golang \
+$haskell \
+$java \
+$julia \
+$nodejs \
+$nim \
+$rust \
+$scala \
+$python \
+$docker_context \
+$gcloud \
+$pulumi \
+$time\n  \
+[󱞪](fg:iris) 
+"""
 
-palette = "catppuccin_mocha"
+palette = "rose-pine"
 
-[palettes.catppuccin_mocha]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-mauve = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
+[palettes.rose-pine]
+overlay = '#26233a'
+love = '#eb6f92'
+gold = '#f6c177'
+rose = '#ebbcba'
+pine = '#31748f'
+foam = '#9ccfd8'
+iris = '#c4a7e7'
 
+[directory]
+format = "[](fg:overlay)[ $path ]($style)[](fg:overlay)"
+style = "bg:overlay fg:pine"
+truncation_length = 3
+truncation_symbol = "…/"
 
-[buf]
-format = '(with [$symbol$version ]($style))'
+[directory.substitutions]
+Documents = "󰈙"
+Downloads = " "
+Music = " "
+Pictures = " "
 
-[bun]
-format = '(via [$symbol($version )]($style))'
+[fill]
+style = "fg:overlay"
+symbol = " "
+
+[git_branch]
+format = "[](fg:overlay)[ $symbol $branch ]($style)[](fg:overlay)"
+style = "bg:overlay fg:foam"
+symbol = ""
+
+[git_status]
+style = "bg:overlay fg:love"
+format = '[](fg:overlay)[$all_status$ahead_behind]($style)[](fg:overlay)'
+disabled = true
+
+[time]
+disabled = false
+format = "[](fg:overlay)[ $time 󰴈 ]($style)[](fg:overlay)"
+style = "bg:overlay fg:rose"
+time_format = "%I:%M%P"
+use_12hr = true
+
+[username]
+disabled = false
+format = "[](fg:overlay)[ 󰧱 $user ]($style)[](fg:overlay)"
+show_always = true
+style_root = "bg:overlay fg:iris"
+style_user = "bg:overlay fg:iris"
+
+# Languages
 
 [c]
-format = '(via [$symbol($version(-$name) )]($style))'
-
-[cmake]
-format = '(via [$symbol($version )]($style))'
-
-[cobol]
-format = '(via [$symbol($version )]($style))'
-
-[crystal]
-format = '(via [$symbol($version )]($style))'
-
-[daml]
-format = '(via [$symbol($version )]($style))'
-
-[dart]
-format = '(via [$symbol($version )]($style))'
-
-[deno]
-format = '(via [$symbol($version )]($style))'
-
-[dotnet]
-format = '(via [$symbol($version )(🎯 $tfm )]($style))'
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
 
 [elixir]
-format = '(via [$symbol($version \(OTP $otp_version\) )]($style))'
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
 
 [elm]
-format = '(via [$symbol($version )]($style))'
-
-[erlang]
-format = '(via [$symbol($version )]($style))'
-
-[fennel]
-format = '(via [$symbol($version )]($style))'
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
 
 [golang]
-format = '(via [$symbol($version )]($style))'
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
 
 [haskell]
-format = '(via [$symbol($version )]($style))'
-
-[helm]
-format = '(via [$symbol($version )]($style))'
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
 
 [java]
-format = '(via [$symbol($version )]($style))'
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
 
 [julia]
-format = '(via [$symbol($version )]($style))'
-
-[kotlin]
-format = '(via [$symbol($version )]($style))'
-
-[lua]
-format = '(via [$symbol($version )]($style))'
-
-[nim]
-format = '(via [$symbol($version )]($style))'
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
 
 [nodejs]
-format = '(via [$symbol($version )]($style))'
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = "󰎙 "
 
-[ocaml]
-format = '(via [$symbol($version )(\($switch_indicator$switch_name\) )]($style))'
-
-[opa]
-format = '(via [$symbo($version ]($style))"'
-[package]
-format = '(is [$symbol$version]($style) )'
-
-[perl]
-format = '(via [$symbol($version )]($style))'
-
-[php]
-format = '(via [$symbol($version )]($style))'
-
-[purescript]
-format = '(via [$symbol($version )]($style))'
-
-[python]
-format = '(via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style))'
-
-[raku]
-format = '(via [$symbol($version-$vm_version )]($style))'
-
-[red]
-format = '(via [$symbol($version )]($style))'
-
-[rlang]
-format = '(via [$symbol($version )]($style))'
-
-[ruby]
-format = '(via [$symbol($version )]($style))'
+[nim]
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = "󰆥 "
 
 [rust]
-format = '(via [$symbol($version )]($style))'
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = ""
 
 [scala]
-format = '(via [$symbol($version )]($style))'
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
 
-[swift]
-format = '(via [$symbol($version )]($style))'
+[python]
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = ' '
 
-[vagrant]
-format = '(via [$symbol($version )]($style))'
+[docker_context]
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol$context]($style)[](fg:overlay) "
+disabled = false
 
-[vlang]
-format = '(via [$symbol($version )]($style))'
+[pulumi]
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol($username@)$stack]($style)[](fg:overlay) "
 
-[zig]
-format = '(via [$symbol($version )]($style))'
+[gcloud]
+style = "bg:overlay fg:pine"
+format = '[](fg:overlay)[$symbol$account(@$domain)(\($project\))]($style)[](fg:overlay) '
+

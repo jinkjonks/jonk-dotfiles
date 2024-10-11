@@ -1,7 +1,7 @@
 # Jonk 
 
 spacing         = 3
-prefer_small_ascii = true
+prefer_small_ascii = false
 key_color       = "#cba6f7"
 separator       = ""
 

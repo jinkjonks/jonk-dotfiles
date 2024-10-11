@@ -61,6 +61,14 @@ profiles:
     variables:
       distro: macos
       home_dir: $HOME
+  Jennys-Josef-Laptop.local:
+    include:
+      - common
+    dynvariables:
+      nu_dir: nu -c '$nu.default-config-dir'
+    variables:
+      distro: macos
+      home_dir: $HOME
   jonks-pi:
     variables:
       distro: debian

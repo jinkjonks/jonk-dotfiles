@@ -2,14 +2,23 @@
   "neodev": {
     "library": {
       "enabled": true,
-      "plugins": true
+      "plugins": ["nvim-lspconfig", "lsp"]
     }
   },
   "neoconf": {
     "plugins": {
       "lua_ls": {
         "enabled": true
-      }
+      },
+      "pyright":{
+        "enabled": true
+      },
+        "copilot": {
+          "enabled": true
+        },
+      "ruff": {
+        "enabled": true
+      },
     }
   }
 }
