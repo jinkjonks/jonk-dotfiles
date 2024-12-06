@@ -1,0 +1,3 @@
+theme = "jonk"
+long_uptime = false
+show = ["Machine", "Distribution", "OperatingSystem", "Shell", "Processor"]

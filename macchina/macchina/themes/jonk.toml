@@ -1,0 +1,27 @@
+# Jonk 
+
+spacing         = 3
+hide_ascii = true
+key_color       = "#59d1f2"
+separator       = ""
+
+[box]
+title           = " @jinkjonks ✨ "
+
+border          = "double"
+visible = true
+
+[palette]
+type            = "Full"
+glyph           = "●"
+spacing = 2
+visible         = true
+
+[bar]
+glyph           = "●"
+hide_delimiters = true
+visible         = true
+
+[box.inner_margin]
+x               = 2
+y               = 1

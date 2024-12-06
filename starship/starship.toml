@@ -1,0 +1,181 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$username\
+$directory\
+$git_branch\
+$git_status\
+$gcloud\
+$pulumi\
+$fill\
+$c\
+$elixir\
+$elm\
+$golang\
+$haskell\
+$java\
+$julia\
+$nodejs\
+$nim\
+$rust\
+$scala\
+$conda\
+$docker_context\
+$python\
+$time\n  \
+[󱞪](fg:purple) \
+"""
+palette = 'everblush'
+
+
+[palettes.everblush]
+background = "#141b1e"
+overlay = "#232a2d"
+red = "#e57474"
+green = "#8ccf7e"
+yellow = "#e5c76b"
+blue = "#67b0e8"
+magenta = "#c47fd5"
+cyan = "#6cbfbf"
+light_gray = "#b3b9b8"
+foreground = "#dadada"
+
+[directory]
+format = "[](fg:overlay)[ $path ]($style)[](fg:overlay) "
+style = "bg:overlay fg:blue"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+Documents = "󰈙"
+Downloads = " "
+Music = " "
+Pictures = " "
+
+[fill]
+style = "fg:overlay"
+symbol = " "
+
+[git_branch]
+format = "[](fg:overlay)[ $symbol $branch ]($style)[](fg:overlay) "
+style = "bg:overlay fg:cyan"
+symbol = ""
+
+[git_status]
+disabled = false
+style = "bg:overlay fg:red"
+format = '[](fg:overlay)([🐢 ($all_status)($ahead_behind)]($style))[](fg:overlay) '
+up_to_date = '[✓ ](bg:overlay fg:purple)'
+untracked = '[?\($count\)](bg:overlay fg:yellow)'
+stashed = '[\$](bg:overlay fg:purple)'
+modified = '[!\($count\)](bg:overlay fg:yellow)'
+renamed = '[»\($count\)](bg:overlay fg:purple)'
+deleted = '[✘\($count\)](style)'
+staged = '[++\($count\)](bg:overlay fg:yellow)'
+ahead = '[⇡\(${count}\)](bg:overlay fg:cyan)'
+diverged = '⇕[\[](bg:overlay fg:purple)[⇡\(${ahead_count}\)](bg:overlay fg:cyan)[⇣\(${behind_count}\)](bg:overlay fg:pink)[\]](bg:overlay fg:purple)'
+behind = '[⇣\(${count}\)](bg:overlay fg:pink)'
+
+
+[time]
+disabled = false
+time_format = "%a %e %b %R"
+style = "bg:overlay fg:purple"
+format = "[](fg:overlay)[ $time ]($style)[](fg:overlay)"
+
+[username]
+disabled = false
+format = "[](fg:overlay)[ 󰇥 $user ]($style)[](fg:overlay) "
+show_always = true
+style_root = "bg:overlay fg:purple"
+style_user = "bg:overlay fg:purple"
+
+[gcloud]
+style = "bg:overlay fg:cyan"
+format = "[](fg:overlay)[$symbol$account]($style)[](fg:overlay) "
+disabled = false
+symbol = "󱇶 "
+
+[pulumi]
+style = "bg:overlay fg:purple"
+format = "[](fg:overlay)[$symbol$stack]($style)[](fg:overlay) "
+disabled = false
+symbol = "  "
+# Languages
+
+[c]
+style = "bg:overlay fg:blue"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
+
+[elixir]
+style = "bg:overlay fg:blue"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
+
+[elm]
+style = "bg:overlay fg:blue"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
+
+[golang]
+style = "bg:overlay fg:blue"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
+
+[haskell]
+style = "bg:overlay fg:blue"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
+
+[java]
+style = "bg:overlay fg:blue"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
+
+[julia]
+style = "bg:overlay fg:blue"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
+
+[nodejs]
+style = "bg:overlay fg:blue"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = "󰎙 "
+
+[nim]
+style = "bg:overlay fg:blue"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = "󰆥 "
+
+[rust]
+style = "bg:overlay fg:blue"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = ""
+
+[scala]
+style = "bg:overlay fg:blue"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+symbol = " "
+
+[python]
+style = "bg:overlay fg:blue"
+format = '[](fg:overlay)[$symbol$version( \($virtualenv\))]($style)[](fg:overlay) '
+disabled = false
+version_format = 'v${major}.${minor}'
+symbol = ' '
+
+[docker_context]
+format = '[](fg:overlay][$symbol$context]($style)[](fg:overlay) '
+symbol = ' '
