@@ -1,1 +1,8 @@
-../../dotfiles/sketchybar/.config/sketchybar/sketchybarrc
+#!/usr/bin/env lua
+
+-- Load the sketchybar-package and prepare the helper binaries
+require("helpers")
+require("init")
+
+-- Enable hot reloading
+Sbar.exec("sketchybar --hotload true")
