@@ -35,12 +35,12 @@ eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 eval "$(cloud-sql-proxy completion zsh)"
 
-function stowit() {
-  if [ -n $1 ]
+function stew() {
+  if [ $# -eq 0 ]
   then
-    stow --dotfiles -v -R -t ~ $1
-  else
     echo "Package name needed"
+  else
+    stow --dotfiles -v -R -t ~ $@
   fi
 };
 
