@@ -23,7 +23,7 @@ rustup completions zsh > ~/.zfunc/_rustup
 dir="$HOME/.zsh-complete"
 mkdir -p "$dir"
 rg --generate complete-zsh > "$dir/_rg"
-pulumi gen-completion zsh > "$dir/_pulumi"
+pulumi gen-completion zsh > "$dir/_pulumi" 
 
 eval "$(zoxide init zsh)"
 export PATH="$PATH:/usr/local/go/bin"
