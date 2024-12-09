@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+git:
+  commit:
+    signOff: true
+  mainBranches: [main, development]
+  parseEmoji: true
+notARepository: quit
+gui:
+  nerdFontsVersion: "3"

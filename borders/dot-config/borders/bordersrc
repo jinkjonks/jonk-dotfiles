@@ -1,0 +1,13 @@
+#!/bin/bash
+
+options=(
+  # style=round
+  width=4.0
+  hidpi=off
+  active_color="gradient(top_left=0xffa277ff,bottom_right=0xff4c6bff)" # Example vibrant gradient
+  inactive_color=x00414550                                             # Keep as is or adjust to a darker shade like 0x002b2f
+  background_color=0x141b1e                                            # Dark background from Everblush palette
+  blur_radius=64
+)
+
+borders "${options[@]}"
