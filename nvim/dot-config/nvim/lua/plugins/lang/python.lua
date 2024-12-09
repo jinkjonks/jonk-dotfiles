@@ -1,12 +1,16 @@
 return {
-  { import = "lazyvim.plugins.extra.lang.python" },
+  { import = "lazyvim.plugins.extras.lang.python" },
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      opts.servers.basedpyright.settings.basedpyright.analysis = {
-        autoSearchPaths = true,
-        useLibraryCodeForTypes = true,
-        diagnosticMode = "workspace",
+      opts.servers.basedpyright = {
+        settings = {
+          basedpyright = {
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            diagnosticMode = "workspace",
+          },
+        },
       }
     end,
   },

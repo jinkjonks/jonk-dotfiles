@@ -4,4 +4,4 @@
 --
 --
 vim.g.lazyvim_python_lsp = "basedpyright"
-vim.g.lazyvim_blink_main = true
+vim.g.python3_host_prog = "~/nvim/bin/python3"
