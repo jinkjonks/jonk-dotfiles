@@ -1,11 +1,11 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 SKETCHYBAR_PID=""
 
 cleanup() {
-    echo "Cleaning up..."
-    if [ -n "$SKETCHYBAR_PID" ]; then
-        kill "$SKETCHYBAR_PID" 2>/dev/null
-    fi
+  echo "Cleaning up..."
+  if [ -n "$SKETCHYBAR_PID" ]; then
+    kill "$SKETCHYBAR_PID" 2>/dev/null
+  fi
 }
 
 # Only trap SIGTERM and SIGINT, not EXIT
@@ -43,7 +43,7 @@ apply_yabai_config() {
 
     active_window_opacity 1.0
     normal_window_opacity 1.0
-    
+
     window_placement second_child
     window_shadow float
     window_opacity on
@@ -58,12 +58,6 @@ apply_yabai_config() {
 
 # function to add application-specific rules
 add_yabai_rules() {
-  # specific applications with custom opacity settings
-  yabai -m rule --add app="^Cursor$" opacity=0.9
-  yabai -m rule --add app="^Visual Studio Code$" opacity=0.9
-  yabai -m rule --add app="^kitty$" opacity=0.9
-
-  # exclude specific applications from being managed
   apps_to_exclude=(
     "^calculator$"
     "^Software Update$"
@@ -77,6 +71,8 @@ add_yabai_rules() {
     "^activity monitor$"
     "^Messages$"
     "^Logi Options+$"
+    "^Caprine$"
+    "^Finder$"
   )
 
   for app in "${apps_to_exclude[@]}"; do
@@ -96,10 +92,10 @@ add_yabai_rules
 SKETCHYBAR_PATH="/opt/homebrew/bin/sketchybar"
 
 if ! pgrep -x "sketchybar" >/dev/null; then
-    echo "Starting SketchyBar..."
-    "$SKETCHYBAR_PATH" &
-    SKETCHYBAR_PID=$!
-    sleep 1
+  echo "Starting SketchyBar..."
+  "$SKETCHYBAR_PATH" &
+  SKETCHYBAR_PID=$!
+  sleep 1
 fi
 
 echo "yabai configuration loaded..."

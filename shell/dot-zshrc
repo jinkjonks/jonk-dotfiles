@@ -1,6 +1,6 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 
-
+export PULUMI_CONFIG_PASSPHRASE=""
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -34,7 +34,6 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 eval "$(cloud-sql-proxy completion zsh)"
-
 function stew() {
   if [ $# -eq 0 ]
   then
@@ -43,5 +42,5 @@ function stew() {
     stow --dotfiles -v -R -t ~ $@
   fi
 };
-
+compinit
 macchina
