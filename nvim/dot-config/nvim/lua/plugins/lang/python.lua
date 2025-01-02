@@ -8,7 +8,6 @@ return {
           basedpyright = {
             autoSearchPaths = true,
             useLibraryCodeForTypes = true,
-            diagnosticMode = "workspace",
           },
         },
       }
