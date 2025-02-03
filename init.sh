@@ -16,7 +16,7 @@ brew install unzip wget curl gzip
 brew install lazygit
 
 echo 'Installing UI setup'
-brew install font-zedmono-nerd-font
+brew install font-zed-mono-nerd-font
 brew install felixkratz/formulae/borders
 brew install felixkratz/formulae/sketchybar
 brew install koekeishiya/formulae/yabai
@@ -24,3 +24,5 @@ brew install koekeishiya/formulae/skhd
 
 echo 'Install programs'
 brew install 1password raycast spotify suspicious-package mullvadvpn betterdisplay karabiner-elements keka apparency appcleaner arc 1password-cli vscodium
+
+stow -R --dotfiles shell

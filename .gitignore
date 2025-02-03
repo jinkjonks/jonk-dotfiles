@@ -2,3 +2,4 @@
 .gitignore
 .git
 nvim/dot-config/nvim/lazy-lock.json
+shell/dot-config/nvim/lazy-lock.json

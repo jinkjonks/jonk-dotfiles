@@ -5,3 +5,6 @@
 --
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.python3_host_prog = "~/nvim/bin/python3"
+
+vim.go.lazyredraw = true
+vim.g.lazyvim_blink_main = true
