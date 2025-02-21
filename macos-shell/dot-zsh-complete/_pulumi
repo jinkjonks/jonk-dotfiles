@@ -5331,6 +5331,8 @@ _pulumi_state_delete()
     flags_with_completion=()
     flags_completion=()
 
+    flags+=("--all")
+    local_nonpersistent_flags+=("--all")
     flags+=("--force")
     local_nonpersistent_flags+=("--force")
     flags+=("--stack=")

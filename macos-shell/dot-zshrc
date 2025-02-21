@@ -18,6 +18,7 @@ alias docker-wipe='docker system prune --force && docker system prune -a --force
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export GOOGLE_APPLICATION_CREDENTIALS=$HOME/.config/gcloud/application_default_credentials.json
+export GITHUB_TOKEN=$(gh auth token)
 
 rustup completions zsh > ~/.zfunc/_rustup
 dir="$HOME/.zsh-complete"
@@ -54,3 +55,8 @@ if [ -f '/Users/jen/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jen/google-
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jen/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jen/google-cloud-sdk/completion.zsh.inc'; fi
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/jen/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions

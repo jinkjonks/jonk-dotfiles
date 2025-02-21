@@ -15,4 +15,13 @@ config.hide_tab_bar_if_only_one_tab = true
 config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
 -- and finally, return the configuration to wezterm
+--
+config.mouse_bindings = {
+	-- Ctrl-click will open the link under the mouse cursor
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "CTRL",
+		action = wezterm.action.OpenLinkAtMouseCursor,
+	},
+}
 return config

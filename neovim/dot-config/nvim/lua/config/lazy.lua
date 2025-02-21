@@ -30,7 +30,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.util.dot" },
 
     { import = "lazyvim.plugins.extras.lang.python" },
-    { import = "lazyvim.plugins.extras.ai.copilot" },
     { import = "lazyvim.plugins.extras.ai.supermaven" },
     { import = "lazyvim.plugins.extras.editor.inc-rename" },
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
