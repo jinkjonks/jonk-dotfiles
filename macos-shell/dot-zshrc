@@ -12,8 +12,6 @@ source <(fzf --zsh)
 eval "$(fnm env --use-on-cd --resolve-engines=true --version-file-strategy=recursive --log-level=error)"
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(starship init zsh)"
-source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 alias docker-wipe='docker system prune --force && docker system prune -a --force && docker volume prune --force'
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -38,7 +36,6 @@ alias ls='lsd'
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
-eval "$(cloud-sql-proxy completion zsh)"
 function stew() {
   if [ $# -eq 0 ]
   then
@@ -59,4 +56,5 @@ if [ -f '/Users/jen/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jen/g
 fpath=(/Users/jen/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
+
 # End of Docker CLI completions
