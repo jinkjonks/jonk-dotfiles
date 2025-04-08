@@ -7,14 +7,14 @@ return {
 
       { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
       { "<leader>ac", "<cmd>Augment chat-toggle<CR>", desc = "Augment: chat toggle" },
-      { "<leader>acc", "<cmd>Augment chat", desc = "Augment: chat" },
-
+      { "<leader>aa", "<cmd>Augment chat<CR>", desc = "Augment: chat" },
       {
         "<leader>ax",
         "<cmd>Augment chat-new<CR>",
         desc = "Augment: new conversation",
         mode = { "n", "v" },
       },
+      { "<c-y>", "<cmd>call augment#Accept()<cr>" },
     },
   },
   {

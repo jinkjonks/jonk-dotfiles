@@ -4,6 +4,7 @@ git:
     signOff: true
   mainBranches: [main, development]
   parseEmoji: true
+  overrideGpg: true
 notARepository: quit
 gui:
   nerdFontsVersion: "3"
