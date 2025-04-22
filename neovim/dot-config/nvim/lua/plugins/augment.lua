@@ -2,19 +2,14 @@ return {
   {
     "augmentcode/augment.vim",
     version = "*",
+    lazy = false,
 
     keys = {
-
-      { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
-      { "<leader>ac", "<cmd>Augment chat-toggle<CR>", desc = "Augment: chat toggle" },
-      { "<leader>aa", "<cmd>Augment chat<CR>", desc = "Augment: chat" },
-      {
-        "<leader>ax",
-        "<cmd>Augment chat-new<CR>",
-        desc = "Augment: new conversation",
-        mode = { "n", "v" },
-      },
-      { "<c-y>", "<cmd>call augment#Accept()<cr>" },
+      { "<leader>ac", ":Augment chat<CR>", mode = "n" },
+      { "<leader>ac", ":Augment chat<CR>", mode = "v" },
+      { "<leader>an", ":Augment chat-new<CR>", mode = "n" },
+      { "<leader>an", ":Augment chat-new<CR>", mode = "v" },
+      { "<leader>at", ":Augment chat-toggle<CR>", mode = "n" },
     },
   },
   {
