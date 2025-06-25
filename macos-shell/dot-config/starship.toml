@@ -3,6 +3,7 @@
 format = """
 $username\
 $directory\
+$nix_shell\
 $git_branch\
 $git_status\
 $gcloud\
@@ -25,11 +26,10 @@ $python\
 $time\n  \
 [󱞪](fg:purple) \
 """
-palette = 'everblush'
+palette = 'duskfox'
 
 
 [palettes.everblush]
-background = "#141b1e"
 overlay = "#232a2d"
 red = "#e57474"
 green = "#8ccf7e"
@@ -37,8 +37,15 @@ yellow = "#e5c76b"
 blue = "#67b0e8"
 magenta = "#c47fd5"
 cyan = "#6cbfbf"
-light_gray = "#b3b9b8"
-foreground = "#dadada"
+
+[palettes.duskfox]
+overlay = "#e0def4"
+red = "#eb6f92"     # red
+green = "#a3be8c"   # green
+yellow = "#f6c177"  # yellow
+blue = "#569fba"    # lang_bg → best candidate for blue
+magenta = "#c4a7e7" # purple → mapped to magenta
+cyan = "#9ccfd8"    # os_bg → muted cyan tone
 
 [directory]
 format = "[](fg:overlay)[ $path ]($style)[](fg:overlay) "
@@ -55,6 +62,11 @@ Pictures = " "
 [fill]
 style = "fg:overlay"
 symbol = " "
+
+[nix_shell]
+format = "[](fg:overlay)[$symbol $name]($style)[](fg:overlay) "
+style = "bg:overlay fg:cyan"
+symbol = " "
 
 [git_branch]
 format = "[](fg:overlay)[ $symbol $branch ]($style)[](fg:overlay) "
@@ -177,5 +189,5 @@ version_format = 'v${major}.${minor}'
 symbol = ' '
 
 [docker_context]
-format = '[](fg:overlay][$symbol$context]($style)[](fg:overlay) '
+format = '[](fg:overlay)[$symbol$context]($style)[](fg:overlay) '
 symbol = ' '
