@@ -5,6 +5,9 @@
 --
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.python3_host_prog = "~/nvim/bin/python3"
-vim.g.augment_workspacefolders = { "~/gnome-flask", "~/gnome-vue" }
+vim.g.augment_workspacefolders = { "~/gnome-flask" }
 vim.g.lazyvim_blink_main = true
-vim.g.augment_disable_tab_mapping = true
+
+vim.g.lazyvim_picker = "fzf"
+
+vim.lsp.set_log_level("off")
