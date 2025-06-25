@@ -1,5 +1,7 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 
+eval "$(devbox global shellenv)"
+
 export PULUMI_CONFIG_PASSPHRASE=""
 if type brew &>/dev/null
 then
@@ -51,10 +53,7 @@ if [ -f '/Users/jen/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jen/google-
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jen/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jen/google-cloud-sdk/completion.zsh.inc'; fi
 
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/jen/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
 
-# End of Docker CLI completions
+autoload -U compinit; compinit
 macchina
+
