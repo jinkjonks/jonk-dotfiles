@@ -1,16 +1,16 @@
--- Autocmds are automatically loaded on the VeryLazy event
--- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
--- Add any additional autocmds here
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client == nil then
-      return
-    end
-    if client.name == "ruff" then
-      client.server_capabilities.hoverProvider = false
-    end
-  end,
-  desc = "LSP: Disable hover capability from Ruff",
-})
+-- Function to disable diagnostics on text changes but enable on save for all attached LSP clients
+local function setup_diagnostics_on_save(_, bufnr)
+  -- Create autocommand to refresh diagnostics on BufWritePost (after saving)
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.buf.format({ async = true })
+      vim.lsp.diagnostic.refresh()
+    end,
+  })
+end
+
+-- Example setup for all attached LSP clients in your lspconfig setup
+require("lspconfig").util.default_config.on_attach = function(client, bufnr)
+  setup_diagnostics_on_save(client, bufnr)
+end

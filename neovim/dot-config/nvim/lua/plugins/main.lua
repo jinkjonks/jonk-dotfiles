@@ -12,15 +12,19 @@ return {
     },
   },
 
-  { "Everblush/nvim", name = "everblush" },
-  { "EdenEast/nightfox.nvim" },
+  {
+    "catppuccin/nvim",
+  },
+
   { "LazyVim/LazyVim", opts = {
-    colorscheme = "duskfox",
+    colorscheme = "catppuccin-mocha",
   } },
   { "wakatime/vim-wakatime", lazy = false },
   { "akinsho/git-conflict.nvim", version = "*", config = true },
   {
-    "ibhagwa/fzf-lua",
+    "ibhagwan/fzf-lua",
+    ---@module "fzf-lua"
+    ---@type fzf-lua.Config
     opts = {
       setup = { files = { hidden = false }, grep = { hidden = false } },
     },

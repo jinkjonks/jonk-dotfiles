@@ -1,6 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
+
     opts = function(_, opts)
       opts.servers.basedpyright = {
         settings = {
@@ -8,12 +9,11 @@ return {
             analysis = {
               autoImportCompletions = true,
               useTypingExtensions = true,
+              autoFormatStrings = true,
               inlayHints = {
-                variableType = false,
-                callArgumentNames = true,
-                functionReturnTypes = false,
+                variableTypes = false,
+                callArgumentNames = false,
               },
-              diagnosticMode = "openFilesOnly",
             },
             autoSearchPaths = true,
             useLibraryCodeForTypes = true,
@@ -24,6 +24,7 @@ return {
   },
   {
     "roobert/f-string-toggle.nvim",
+    ft = "python",
     config = function()
       require("f-string-toggle").setup({
         key_binding = "<leader>cpf",
