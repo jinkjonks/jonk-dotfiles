@@ -1,1 +1,0 @@
-return { { "craigmac/vim-mermaid" } }
