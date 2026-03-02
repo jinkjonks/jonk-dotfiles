@@ -18,7 +18,9 @@
     "curl@latest",
     "gzip@latest",
     "_1password-cli@latest",
-    "uv@latest"
+    "uv@latest",
+    "rustup@latest",
+    "zoxide@latest"
   ],
   "shell": {
     "init_hook": [
