@@ -1,25 +1,29 @@
 export XDG_CONFIG_HOME="$HOME/.config"
-
 eval "$(devbox global shellenv)"
+eval "$(brew shellenv)"
 
-export PULUMI_CONFIG_PASSPHRASE=""
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
   autoload -Uz compinit
   compinit
 fi
+export PULUMI_CONFIG_PASSPHRASE=""
+export PRISMATIC_URL="https://app.eu-west-1.prismatic.io"
 source <(fzf --zsh)
 eval "$(fnm env --use-on-cd --resolve-engines=true --version-file-strategy=recursive --log-level=error)"
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(starship init zsh)"
 alias docker-wipe='docker system prune --force && docker system prune -a --force && docker volume prune --force'
 
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export GOOGLE_APPLICATION_CREDENTIALS=$HOME/.config/gcloud/application_default_credentials.json
-export GITHUB_TOKEN=$(gh auth token)
+export CLAUDE_CODE_USE_VERTEX=1
+export CLOUD_ML_REGION=global
+export ANTHROPIC_VERTEX_PROJECT_ID=josef-legal-intranet
 
+
+export GITHUB_TOKEN=$(gh auth token)
 rustup completions zsh > ~/.zfunc/_rustup
 dir="$HOME/.zsh-complete"
 mkdir -p "$dir"
@@ -53,7 +57,32 @@ if [ -f '/Users/jen/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jen/google-
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jen/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jen/google-cloud-sdk/completion.zsh.inc'; fi
 
+# Load zsh-syntax-highlighting from devbox or homebrew
+if [ -n "$DEVBOX_SHELL_ENABLED" ]; then
+  # Try devbox nix store first
+  ZSH_HIGHLIGHT=$(find /nix/store -name "zsh-syntax-highlighting.zsh" 2>/dev/null | head -1)
+  [ -n "$ZSH_HIGHLIGHT" ] && source "$ZSH_HIGHLIGHT"
+elif [ -f "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
-autoload -U compinit; compinit
+
+eval eval 
+PRISM_AC_ZSH_SETUP_PATH=/Users/jen/Library/Caches/prism/autocomplete/zsh_setup && test -f $PRISM_AC_ZSH_SETUP_PATH && source $PRISM_AC_ZSH_SETUP_PATH; # prism autocomplete setup
+
+
+
+
+# bun completions
+[ -s "/Users/jen/.oh-my-zsh/completions/_bun" ] && source "/Users/jen/.oh-my-zsh/completions/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+
+# Added by Antigravity
+export PATH="/Users/jen/.antigravity/antigravity/bin:$PATH"
+
 macchina
-

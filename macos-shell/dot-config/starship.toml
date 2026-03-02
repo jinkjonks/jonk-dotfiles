@@ -26,30 +26,27 @@ $python\
 $time\n  \
 [󱞪](fg:purple) \
 """
-palette = 'duskfox'
+palette = 'rose-pine'
 
 
-[palettes.everblush]
-overlay = "#232a2d"
-red = "#e57474"
-green = "#8ccf7e"
-yellow = "#e5c76b"
-blue = "#67b0e8"
-magenta = "#c47fd5"
-cyan = "#6cbfbf"
 
-[palettes.duskfox]
-overlay = "#e0def4"
-red = "#eb6f92"     # red
-green = "#a3be8c"   # green
-yellow = "#f6c177"  # yellow
-blue = "#569fba"    # lang_bg → best candidate for blue
-magenta = "#c4a7e7" # purple → mapped to magenta
-cyan = "#9ccfd8"    # os_bg → muted cyan tone
+[palettes.rose-pine]
+background = "#191724"
+lighter_background = "#1f1d2e"
+red = "#eb6f92"
+green = "#9ccfd8"
+yellow = "#f6c177"
+blue = "#31748f"
+magenta = "#c4a7e7"
+cyan = "#9ccfd8"
+light_gray = "#908caa"
+foreground = "#e0def4"
+purple = "#c4a7e7"
+pink = "#eb6f92"
 
 [directory]
-format = "[](fg:overlay)[ $path ]($style)[](fg:overlay) "
-style = "bg:overlay fg:blue"
+format = "[](fg:lighter_background)[ $path ]($style)[](fg:lighter_background) "
+style = "bg:lighter_background fg:blue"
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -60,134 +57,134 @@ Music = " "
 Pictures = " "
 
 [fill]
-style = "fg:overlay"
+style = "fg:lighter_background"
 symbol = " "
 
 [nix_shell]
-format = "[](fg:overlay)[$symbol $name]($style)[](fg:overlay) "
-style = "bg:overlay fg:cyan"
+format = "[](fg:lighter_background)[$symbol $name]($style)[](fg:lighter_background) "
+style = "bg:lighter_background fg:cyan"
 symbol = " "
 
 [git_branch]
-format = "[](fg:overlay)[ $symbol $branch ]($style)[](fg:overlay) "
-style = "bg:overlay fg:cyan"
+format = "[](fg:lighter_background)[ $symbol $branch ]($style)[](fg:lighter_background) "
+style = "bg:lighter_background fg:cyan"
 symbol = ""
 
 [git_status]
 disabled = false
-style = "bg:overlay fg:red"
-format = '[](fg:overlay)([🐢 ($all_status)($ahead_behind)]($style))[](fg:overlay) '
-up_to_date = '[✓ ](bg:overlay fg:purple)'
-untracked = '[?\($count\)](bg:overlay fg:yellow)'
-stashed = '[\$](bg:overlay fg:purple)'
-modified = '[!\($count\)](bg:overlay fg:yellow)'
-renamed = '[»\($count\)](bg:overlay fg:purple)'
+style = "bg:lighter_background fg:red"
+format = '[](fg:lighter_background)([🐢 ($all_status)($ahead_behind)]($style))[](fg:lighter_background) '
+up_to_date = '[✓ ](bg:lighter_background fg:purple)'
+untracked = '[?\($count\)](bg:lighter_background fg:yellow)'
+stashed = '[\$](bg:lighter_background fg:purple)'
+modified = '[!\($count\)](bg:lighter_background fg:yellow)'
+renamed = '[»\($count\)](bg:lighter_background fg:purple)'
 deleted = '[✘\($count\)](style)'
-staged = '[++\($count\)](bg:overlay fg:yellow)'
-ahead = '[⇡\(${count}\)](bg:overlay fg:cyan)'
-diverged = '⇕[\[](bg:overlay fg:purple)[⇡\(${ahead_count}\)](bg:overlay fg:cyan)[⇣\(${behind_count}\)](bg:overlay fg:pink)[\]](bg:overlay fg:purple)'
-behind = '[⇣\(${count}\)](bg:overlay fg:pink)'
+staged = '[++\($count\)](bg:lighter_background fg:yellow)'
+ahead = '[⇡\(${count}\)](bg:lighter_background fg:cyan)'
+diverged = '⇕[\[](bg:lighter_background fg:purple)[⇡\(${ahead_count}\)](bg:lighter_background fg:cyan)[⇣\(${behind_count}\)](bg:lighter_background fg:pink)[\]](bg:lighter_background fg:purple)'
+behind = '[⇣\(${count}\)](bg:lighter_background fg:pink)'
 
 
 [time]
 disabled = false
 time_format = "%a %e %b %R"
-style = "bg:overlay fg:purple"
-format = "[](fg:overlay)[ $time ]($style)[](fg:overlay)"
+style = "bg:lighter_background fg:purple"
+format = "[](fg:lighter_background)[ $time ]($style)[](fg:lighter_background)"
 
 [username]
 disabled = false
-format = "[](fg:overlay)[ 󰇥 $user ]($style)[](fg:overlay) "
+format = "[](fg:lighter_background)[ 󰇥 $user ]($style)[](fg:lighter_background) "
 show_always = true
-style_root = "bg:overlay fg:purple"
-style_user = "bg:overlay fg:purple"
+style_root = "bg:lighter_background fg:purple"
+style_user = "bg:lighter_background fg:purple"
 
 [gcloud]
-style = "bg:overlay fg:cyan"
-format = "[](fg:overlay)[$symbol$account]($style)[](fg:overlay) "
+style = "bg:lighter_background fg:cyan"
+format = "[](fg:lighter_background)[$symbol$account]($style)[](fg:lighter_background) "
 disabled = false
 symbol = "󱇶 "
 
 [pulumi]
-style = "bg:overlay fg:purple"
-format = "[](fg:overlay)[$symbol$stack]($style)[](fg:overlay) "
+style = "bg:lighter_background fg:purple"
+format = "[](fg:lighter_background)[$symbol$stack]($style)[](fg:lighter_background) "
 disabled = false
 symbol = "  "
 # Languages
 
 [c]
-style = "bg:overlay fg:blue"
-format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+style = "bg:lighter_background fg:blue"
+format = "[](fg:lighter_background)[$symbol$version]($style)[](fg:lighter_background) "
 disabled = false
 symbol = " "
 
 [elixir]
-style = "bg:overlay fg:blue"
-format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+style = "bg:lighter_background fg:blue"
+format = "[](fg:lighter_background)[$symbol$version]($style)[](fg:lighter_background) "
 disabled = false
 symbol = " "
 
 [elm]
-style = "bg:overlay fg:blue"
-format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+style = "bg:lighter_background fg:blue"
+format = "[](fg:lighter_background)[$symbol$version]($style)[](fg:lighter_background) "
 disabled = false
 symbol = " "
 
 [golang]
-style = "bg:overlay fg:blue"
-format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+style = "bg:lighter_background fg:blue"
+format = "[](fg:lighter_background)[$symbol$version]($style)[](fg:lighter_background) "
 disabled = false
 symbol = " "
 
 [haskell]
-style = "bg:overlay fg:blue"
-format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+style = "bg:lighter_background fg:blue"
+format = "[](fg:lighter_background)[$symbol$version]($style)[](fg:lighter_background) "
 disabled = false
 symbol = " "
 
 [java]
-style = "bg:overlay fg:blue"
-format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+style = "bg:lighter_background fg:blue"
+format = "[](fg:lighter_background)[$symbol$version]($style)[](fg:lighter_background) "
 disabled = false
 symbol = " "
 
 [julia]
-style = "bg:overlay fg:blue"
-format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+style = "bg:lighter_background fg:blue"
+format = "[](fg:lighter_background)[$symbol$version]($style)[](fg:lighter_background) "
 disabled = false
 symbol = " "
 
 [nodejs]
-style = "bg:overlay fg:blue"
-format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+style = "bg:lighter_background fg:blue"
+format = "[](fg:lighter_background)[$symbol$version]($style)[](fg:lighter_background) "
 disabled = false
 symbol = "󰎙 "
 
 [nim]
-style = "bg:overlay fg:blue"
-format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+style = "bg:lighter_background fg:blue"
+format = "[](fg:lighter_background)[$symbol$version]($style)[](fg:lighter_background) "
 disabled = false
 symbol = "󰆥 "
 
 [rust]
-style = "bg:overlay fg:blue"
-format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+style = "bg:lighter_background fg:blue"
+format = "[](fg:lighter_background)[$symbol$version]($style)[](fg:lighter_background) "
 disabled = false
 symbol = ""
 
 [scala]
-style = "bg:overlay fg:blue"
-format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+style = "bg:lighter_background fg:blue"
+format = "[](fg:lighter_background)[$symbol$version]($style)[](fg:lighter_background) "
 disabled = false
 symbol = " "
 
 [python]
-style = "bg:overlay fg:blue"
-format = '[](fg:overlay)[$symbol$version( \($virtualenv\))]($style)[](fg:overlay) '
+style = "bg:lighter_background fg:blue"
+format = '[](fg:lighter_background)[$symbol$version( \($virtualenv\))]($style)[](fg:lighter_background) '
 disabled = false
 version_format = 'v${major}.${minor}'
 symbol = ' '
 
 [docker_context]
-format = '[](fg:overlay)[$symbol$context]($style)[](fg:overlay) '
+format = '[](fg:lighter_background)[$symbol$context]($style)[](fg:lighter_background) '
 symbol = ' '
