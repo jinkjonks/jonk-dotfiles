@@ -1,28 +1,25 @@
-echo 'Install Homebrew'
+#!/bin/bash
+
+echo 'Installing devbox'
+curl -fsSL https://get.jetify.com/devbox | bash
+
+echo 'Setting up dotfiles with stow'
+stow -R --dotfiles shell
+stow -R --dotfiles macos-shell
+stow -R --dotfiles neovim
+stow -R --dotfiles devbox
+
+echo 'Installing CLI tools via devbox global'
+devbox global install
+
+echo 'Installing Homebrew for GUI apps and macOS-specific tools'
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-echo 'Installing packages'
-curl -LsSf https://astral.sh/uv/install.sh | sh
-brew install fnm
-brew install neovim
-brew install stow
+echo 'Installing GUI applications and macOS-specific packages'
+brew install --cask kitty
 
-echo 'Installing shell'
-brew install wezterm starship
-brew install zsh zsh-syntax-highlighting zsh-autosuggestions
-brew install macchina ccat lsd fzf ripgrep ast-grep
-brew install unzip wget curl gzip
-
-brew install lazygit
-
-echo 'Installing UI setup'
+echo 'Installing fonts'
 brew install font-zed-mono-nerd-font
-brew install felixkratz/formulae/borders
-brew install felixkratz/formulae/sketchybar
-brew install koekeishiya/formulae/yabai
-brew install koekeishiya/formulae/skhd
 
-echo 'Install programs'
-brew install 1password raycast spotify suspicious-package mullvadvpn betterdisplay karabiner-elements keka apparency appcleaner arc 1password-cli vscodium
-
-stow -R --dotfiles shell
+echo 'Installing GUI programs'
+brew install --cask 1password raycast spotify suspicious-package karabiner-elements keka apparency appcleaner arc
