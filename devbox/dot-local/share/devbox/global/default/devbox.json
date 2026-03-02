@@ -1,0 +1,37 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.7/.schema/devbox.schema.json",
+  "packages": [
+    "neovim@latest",
+    "stow@latest",
+    "fnm@latest",
+    "starship@latest",
+    "zsh@latest",
+    "zsh-syntax-highlighting@latest",
+    "zsh-autosuggestions@latest",
+    "lsd@latest",
+    "fzf@latest",
+    "ripgrep@latest",
+    "ast-grep@latest",
+    "lazygit@latest",
+    "unzip@latest",
+    "wget@latest",
+    "curl@latest",
+    "gzip@latest",
+    "_1password-cli@latest",
+    "uv@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Devbox environment loaded'",
+      "echo 'CLI tools managed by devbox'"
+    ],
+    "scripts": {
+      "install-dotfiles": [
+        "stow -R --dotfiles shell",
+        "stow -R --dotfiles macos-shell",
+        "stow -R --dotfiles neovim",
+        "stow -R --dotfiles devbox"
+      ]
+    }
+  }
+}
