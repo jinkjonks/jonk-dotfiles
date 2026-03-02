@@ -20,7 +20,9 @@
     "_1password-cli@latest",
     "uv@latest",
     "rustup@latest",
-    "zoxide@latest"
+    "zoxide@latest",
+    "fd@latest",
+    "lua5_1@latest"
   ],
   "shell": {
     "init_hook": [

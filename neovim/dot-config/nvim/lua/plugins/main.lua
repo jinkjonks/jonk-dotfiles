@@ -2,22 +2,10 @@ return {
 
   { import = "plugins.lang" },
   -- lazy.nvim
-  {
-    "folke/snacks.nvim",
-    ----@type --snacks.Config
-    opts = {
-      rename = {},
-      bigfile = {},
-      scope = {},
-    },
-  },
-
-  {
-    "catppuccin/nvim",
-  },
+  { "rose-pine/neovim", name = "rose-pine" },
 
   { "LazyVim/LazyVim", opts = {
-    colorscheme = "catppuccin-mocha",
+    colorscheme = "rose-pine",
   } },
   {
     "mgierada/lazydocker.nvim",
